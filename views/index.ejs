@@ -15,11 +15,17 @@
                 </div>
                 <div class="card-footer">
                     <a href="/pergunta/<%= pergunta.id %>"</a><button class="btn btn-primary">Responder</button></a>
+                
+                    <form method="POST" action="/excluir">
+                        <input type="hidden" name="id" value="<%= pergunta.id %>">
+                        <button type="submit" class="btn btn-primary">Excluir</button>
+                    </form>
                 </div>
+                    
+
+                    
             </div>
         <% }) %>
-
     </div>
-
 </body>
 <%- include partials/footer.ejs %>

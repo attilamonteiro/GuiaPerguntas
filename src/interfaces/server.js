@@ -82,5 +82,39 @@ app.post("/responder", (req, res) => {
   });
 });
 
+app.post('/excluir', async (req, res) => {
+    const id = req.body.id; // id da pergunta ou resposta a ser excluída
+  
+    // Verifica se o ID é válido
+    if (!id) {
+      res.status(400).send('ID inválido');
+      return;
+    }
+  
+    try {
+      // Tenta encontrar a pergunta ou resposta pelo ID
+      const pergunta = await Pergunta.findByPk(id);
+      const resposta = await Resposta.findByPk(id);
+  
+      // Verifica se a pergunta ou resposta existe
+      if (!pergunta && !resposta) {
+        res.status(404).send('Pergunta ou resposta não encontrada');
+        return;
+      }
+  
+      // Exclui a pergunta ou resposta
+      if (pergunta) {
+        await pergunta.destroy();
+        res.redirect('/');
+      } else if (resposta) {
+        await resposta.destroy();
+        res.redirect('back');
+      }
+    } catch (error) {
+      console.log(error);
+      res.status(500).send('Erro ao excluir pergunta ou resposta');
+    }
+  });
+
 
 module.exports = app;

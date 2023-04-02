@@ -1,17 +1,11 @@
-const ObterPerguntasUseCase = require("../usecases/perguntas/obterPerguntas");
-
+const perguntaRepository = require("../../repositores/perguntaRepository")
 class PerguntaController {
-  constructor() {
-    this.obterPerguntasUseCase = new ObterPerguntasUseCase();
+  constructor({ obterPerguntasUseCase }) {
+    this.obterPerguntasUseCase = obterPerguntasUseCase;
   }
 
   async obterPerguntas() {
-    try {
-      const perguntas = await this.obterPerguntasUseCase.execute();
-      return perguntas;
-    } catch (error) {
-      throw new Error(`Erro ao obter perguntas: ${error}`);
-    }
+    return await this.obterPerguntasUseCase.execute();
   }
 }
 

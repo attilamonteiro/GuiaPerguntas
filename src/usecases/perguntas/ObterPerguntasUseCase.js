@@ -1,12 +1,12 @@
+// ObterPerguntasUseCase.js
 class ObterPerguntasUseCase {
-    constructor(perguntaRepository) {
-      this.perguntaRepository = perguntaRepository;
-    }
-  
-    async execute() {
-      const perguntas = await this.perguntaRepository.obterPerguntas();
-      return perguntas;
-    }
+  constructor({ perguntaRepository }) {
+    this.perguntaRepository = perguntaRepository;
   }
-  
-  module.exports = ObterPerguntasUseCase;
+
+  async execute() {
+    return await this.perguntaRepository.obterTodasAsPerguntas();
+  }
+}
+
+module.exports = ObterPerguntasUseCase;

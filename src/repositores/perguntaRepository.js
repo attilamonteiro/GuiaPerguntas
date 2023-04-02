@@ -1,11 +1,20 @@
+const Pergunta = require('../models/Pergunta')
 
-class PerguntaRepository {
-    async obterPerguntas() {
-      const perguntas = await Pergunta.findAll({ raw: true, order:[
-          ['id','DESC'] // ASC = Crescente || DESC = Decrescente
-      ]});
-      return perguntas;
-    }
-  }
-  
-  module.exports = PerguntaRepository;
+module.exports = {
+  obterTodasAsPerguntas: async () => {
+    const perguntas = await Pergunta.findAll({
+      order: [["id", "DESC"]],
+    });
+    return perguntas;
+  },
+
+  obterPerguntaPorId: async (id) => {
+    const pergunta = await Pergunta.findOne({ where: { id } });
+    return pergunta;
+  },
+
+  salvarPergunta: async (titulo, descricao) => {
+    const pergunta = await Pergunta.create({ titulo, descricao });
+    return pergunta;
+  },
+};

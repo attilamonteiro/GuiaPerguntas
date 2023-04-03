@@ -1,9 +1,12 @@
 const Sequelize = require('sequelize');
+const dbConfig = require("../config/db.js");
 
-const connection = new Sequelize('guiaperguntas','root','123456',{
-    host: '0.0.0.0',
-    dialect: 'mysql',
-    port:'3306'
+const connection = new Sequelize(dbConfig.DB_NAME,
+dbConfig.DB_USER, dbConfig.DB_PASSWORD,
+{
+host: dbConfig.DB_HOST,
+dialect: dbConfig.DB_DIALECT,
+port: dbConfig.DB_PORT,
 });
 
 module.exports = connection;

@@ -10,4 +10,4 @@ services:
       MYSQL_PASSWORD: ${DB_PASSWORD}
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
     ports:
-      - "3306:${PORT}"
+      - "3307:${PORT}"
